@@ -1,0 +1,120 @@
+{% extends "Head.html" %}
+{% block content %}
+<div class="row">
+    <div class="col">    
+        <form action="{{ url_for('location') }}"  method="POST"class="location">
+            <div class="addloc">
+                <h3>  Location </h3>
+                <input type="text" class="location form-control" name="location">
+                <br>
+                <Button  type="submit" class="btn btn-primary">Add</Button>
+            </div>
+        </form>
+    </div>
+    <div class="col">
+    
+        <form action="{{ url_for('product') }}" method="POST" class="product">
+            <div class="addprod">
+                <h3>  Product </h3>
+                <input type="text" class="product form-control" name="product">
+                <br>
+                <Button  type="submit" class="btn btn-primary">Add</Button>
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+<br>
+<div class="row">
+    <div class="col-6">
+        <table class="table">
+            <thead>
+              <tr class="table-dark">
+                <th scope="col">Index</th>
+                <th scope="col">Movement ID</th>
+                <th scope="col">Time</th>
+                <th scope="col">From</th>
+                <th scope="col">To</th>
+                <th scope="col">Product Id</th>
+                <th scope="col">QTY</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                    <tr class="table-light">
+                        <td scope="row">{{loop.index}}</td>
+                        <td>{{row[0]}}</td>
+                        <td>{{row[1]}}</td>
+                        <td>{{row[2]}}</td>
+                        <td>{{row[3]}}</td>
+                        <td>{{row[4]}}</td>
+                        <td>{{row[5]}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-1"></div>
+    <div class="col-5">
+        <form action="{{ url_for('productmovment') }}"  method="POST" class="ProductMovement">
+            <div class="addloc">
+                <h3> ProductMovement </h3>
+                <div class="input-group row col">
+                    <span class="input-group-text">Movement Id</span>
+                    <input type="text" name="movement" class="form-control">
+                </div>
+                <br>
+                <div class="row">
+                    <div class="input-group col" >
+                        <span class="input-group-text">From</span>
+                        <input type="text" name="from" class="form-control">
+                    </div>
+                    <div class="input-group col" >
+                        <span class="input-group-text">To</span>
+                        <input type="text" name="to" class="form-control">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="input-group col" >
+                        <span class="input-group-text">Product ID</span>
+                        <input type="text" name="product" class="form-control">
+                    </div>
+                    <div class="input-group col" >
+                        <span class="input-group-text">QTY</span>
+                        <input type="text" name="qty" class="form-control">
+                    </div>
+                </div>
+                <br>
+                <Button  type="submit" class="btn btn-primary">Add</Button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h3> Balance Product </h3>
+        <table class="table">
+            <thead>
+              <tr class="table-dark">
+                <th scope="col">Index</th>
+                <th scope="col">Warehouse</th>
+                <th scope="col">Product ID</th>
+                <th scope="col">Qty</th>
+                
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data1 %}
+                    <tr class="table-light">
+                        <td scope="row">{{loop.index}}</td>
+                        <td>{{row[0]}}</td>
+                        <td>{{row[1]}}</td>
+                        <td>{{row[2]}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
